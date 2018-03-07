@@ -7,13 +7,20 @@ public class ReplaySystem : MonoBehaviour {
     private const int bufferFrames = 100;
     private MyKeyFrame[] keyFrames = new MyKeyFrame[bufferFrames];
     private Rigidbody rigidbody;
+    private GameManager gameManager;
 
 	void Start () {
         rigidbody = GetComponent<Rigidbody>();
+        gameManager = FindObjectOfType<GameManager>();
 	}
 	
 	void Update () {
-        Record();
+
+        if (gameManager.recording) {
+            Record();
+        } else {
+            PlayBack();
+        }
 
     }
 
@@ -28,9 +35,8 @@ public class ReplaySystem : MonoBehaviour {
     void Record() {
         rigidbody.isKinematic = false;
         int frame = Time.frameCount % bufferFrames;
-        float time = Time.time;
         print("Writing frame: " + frame);
-        keyFrames[frame] = new MyKeyFrame(time, transform.position, transform.rotation);
+        keyFrames[frame] = new MyKeyFrame(Time.time, transform.position, transform.rotation);
     }
 }
 
