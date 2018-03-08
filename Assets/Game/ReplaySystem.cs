@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ReplaySystem : MonoBehaviour {
 
-    private const int bufferFrames = 100;
+    private const int bufferFrames = 300;
     private MyKeyFrame[] keyFrames = new MyKeyFrame[bufferFrames];
     private Rigidbody rigidbody;
     private GameManager gameManager;
@@ -16,7 +16,7 @@ public class ReplaySystem : MonoBehaviour {
 	
 	void Update () {
 
-        if (gameManager.recording) {
+        if (gameManager.isRecording) {
             Record();
         } else {
             PlayBack();

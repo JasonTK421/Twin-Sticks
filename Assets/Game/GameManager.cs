@@ -5,7 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    public bool recording = true;
+    public bool isRecording = true;
     private bool isPaused = false;
     private float fixedDeltaTime;
 
@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour {
 
     void Update() {
         if (CrossPlatformInputManager.GetButton("Fire1")) {
-            recording = false;
+            isRecording = false;
         } else {
-            recording = true;
+            isRecording = true;
         }
 
         if (Input.GetKeyDown(KeyCode.P)) {
@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour {
 
     void OnApplicationPause(bool pause) {
         isPaused = pause;
-        PauseUnpauseGame();
     }
 
 }
